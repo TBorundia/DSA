@@ -1,0 +1,43 @@
+class Solution {
+  public:
+  
+    void merge(vector<int>& arr, int f, int mid, int l){
+        vector <int> v;
+        int left=f;
+        int right=mid+1;
+        while(left<=mid && right<=l){
+            if(arr[left]<arr[right]){
+                v.push_back(arr[left]);
+                left++;
+            }
+            else{
+                v.push_back(arr[right]);
+                right++;
+            }
+        }
+        
+        while(left<=mid){
+            v.push_back(arr[left]);
+                left++;
+        }
+        
+        while(right<=l){
+            v.push_back(arr[right]);
+            right++;
+        }
+        
+        for(int i=f;i<=l;i++){
+            arr[i]=v[i-f];
+        }
+    }
+    
+    void mergeSort(vector<int>& arr, int f, int l) {
+        // code here
+        if(f<l){
+            int mid=(f+l)/2;
+            mergeSort(arr,f,mid);
+            mergeSort(arr,mid+1,l);
+            merge(arr,f,mid,l);
+        }
+    }
+};
