@@ -1,0 +1,34 @@
+class Solution
+{
+    public:
+    //Function to sort an array using quick sort algorithm.
+    void quickSort(int a[], int f, int l)
+    {
+        // code here
+        if(f<l){
+            int part = partition(a,f,l);
+            quickSort(a,f,part-1);
+            quickSort(a,part+1,l);
+        }
+    }
+    
+    public:
+    int partition (int a[], int f, int l)
+    {
+       // Your code here
+       int pivot=f;
+       int i=f;
+       int j=l;
+       while(i<j){
+           while(a[i]<=a[pivot] && i<=l){
+               i++;
+           }
+           while(a[j]>a[pivot] && j>=f){
+               j--;
+           }
+           if(i<j) swap(a[i],a[j]);
+       }
+       swap(a[j],a[pivot]);
+       return j;
+    }
+};
